@@ -1,0 +1,6 @@
+# caches
+base/base/__pycache__/
+
+# databases
+# *.sqlite3
+
