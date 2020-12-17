@@ -4,3 +4,4 @@ base/base/__pycache__/
 # databases
 # *.sqlite3
 
+baseApp/__pycache__/
