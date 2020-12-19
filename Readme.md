@@ -2,7 +2,9 @@
 For use with other applications.
 
 ## To build:
-Should be ready to go. Just clone and type. 
+
+* First you will need to rename the file `TEMPLATE_settings.py` to `settings.py`
+
 ```
 docker-compose up
 ```

@@ -5,3 +5,5 @@ base/base/__pycache__/
 # *.sqlite3
 
 baseApp/__pycache__/
+baseApp/settings.py
+baseApp/prod_settings.py

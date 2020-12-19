@@ -10,7 +10,29 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+
 from pathlib import Path
+print("""
+___.   .__.__  .__                        .__     
+\_ |__ |__|  | |  |   _____ _____    ____ |  |__  
+ | __ \|  |  | |  |  /     \\__  \  /    \|  |  \ 
+ | \_\ \  |  |_|  |_|  Y Y  \/ __ \|   |  \   Y  \
+ |___  /__|____/____/__|_|  (____  /___|  /___|  /
+     \/                   \/     \/     \/     \/ 
+________       __                                 
+\______ \     |__|____    ____    ____   ____     
+ |    |  \    |  \__  \  /    \  / ___\ /  _ \    
+ |    `   \   |  |/ __ \|   |  \/ /_/  >  <_> )   
+/_______  /\__|  (____  /___|  /\___  / \____/    
+        \/\______|    \/     \//_____/            
+___.                                              
+\_ |__ _____    ______ ____                       
+ | __ \\__  \  /  ___// __ \                      
+ | \_\ \/ __ \_\___ \\  ___/                      
+ |___  (____  /____  >\___  >                     
+     \/     \/     \/     \/                      
+""")
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +42,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i#e&pl!sgh131xf*9ff8a9!sb5w$ohq3ybkl#e*0dvx_e_)uds'
+SECRET_KEY = 'dont use this key in prod'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
