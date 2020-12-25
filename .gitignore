@@ -7,3 +7,8 @@ base/base/__pycache__/
 baseApp/__pycache__/
 baseApp/settings.py
 baseApp/prod_settings.py
+
+
+# confidential key files
+*key*.yaml
+

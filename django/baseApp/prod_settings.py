@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import dotenv
+import yaml
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,21 +22,17 @@ dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
+keys = yaml.safe_load("keys.yaml")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!l-we-_98l8!)(@4$(m09s@_f%@96i_-elj@v5cwb!+lcdt^of'
+SECRET_KEY = keys['SECRET_KEY']
+ALLOWED_HOSTS = keys['ALLOWED_HOSTS']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-
-ALLOWED_HOSTS = ['williamjeffreyharding.com',
-                 'ec2-54-245-30-133.us-west-2.compute.amazonaws.com',
-                 'localhost',
-                 '127.0.0.1']
 
 
 # Application definition
@@ -86,24 +84,8 @@ WSGI_APPLICATION = 'prodweb.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'Home',
-        'USER': 'game_db',
-        'PASSWORD': os.getenv("AZURE_DATABASE_PASSWORD"),
-        'HOST': 'home1.database.windows.net',
-        'PORT': '1433',
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        }
-    },
-    'game_db': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
-    }
-}
-DATABASE_ROUTERS = ['game.dbRouter.gameDBRouter']
+DATABASES = keys['DATABASES']
+DATABASE_ROUTERS = keys['DATABASE_ROUTERS']
 
 
 # DESKTOP-Q8IL469
@@ -153,17 +135,3 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-# AWS Resources (S3)
-# AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-# AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-# AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
-# AWS_DOMAIN_NAME = f'http://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-# AWS_LOCATION = 'static'
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATIC_URL = AWS_DOMAIN_NAME + '/static/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, "project/media/") # Need update to project
-# MEDIA_URL = '/media/'  # Map to location of static resources (User resources)
