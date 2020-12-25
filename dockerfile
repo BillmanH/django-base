@@ -1,5 +1,6 @@
 # We will use Ubuntu for our image
 FROM ubuntu:latest
+COPY * /
 
 # Updating Ubuntu packages
 RUN apt-get update && yes|apt-get upgrade
@@ -7,9 +8,10 @@ RUN apt-get install -y emacs
 
 # Adding wget and bzip2
 RUN apt-get install -y wget bzip2
-
-# Add sudo
 RUN apt-get -y install sudo
+
+# Additional toys
+RUN apt-get -y install vim
 
 # Add user ubuntu with no password, add to sudo group
 RUN adduser --disabled-password --gecos '' ubuntu
@@ -21,9 +23,13 @@ RUN chmod a+rwx /home/ubuntu/
 #RUN echo `pwd`
 
 # Anaconda installing
-RUN wget https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
-RUN bash Anaconda3-5.0.1-Linux-x86_64.sh -b
-RUN rm Anaconda3-5.0.1-Linux-x86_64.sh
+# NOTE, you will need to update this to the current version if you are from the future. 
+RUN wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
+RUN bash Anaconda3-2020.11-Linux-x86_64.sh -b
+RUN rm Anaconda3-2020.11-Linux-x86_64.sh
+
+# Adding the libraries that I will want to use:
+RUN conda env update -n base --file home_env.yaml
 
 # Set path to conda
 #ENV PATH /root/anaconda3/bin:$PATH
@@ -37,10 +43,10 @@ RUN conda update --all
 # Configuring access to Jupyter
 RUN mkdir /home/ubuntu/notebooks
 RUN jupyter notebook --generate-config --allow-root
-RUN echo "c.NotebookApp.password = u'sha1:6a3f528eec40:6e896b6e4828f525a6e20e5411cd1c8075d68619'" >> /home/ubuntu/.jupyter/jupyter_notebook_config.py
+#RUN echo "c.NotebookApp.password = u'sha1:6a3f528eec40:6e896b6e4828f525a6e20e5411cd1c8075d68619'" >> /home/ubuntu/.jupyter/jupyter_notebook_config.py
 
 # Jupyter listens port: 8888
 EXPOSE 8888
 
 # Run Jupytewr notebook as Docker main process
-CMD ["jupyter", "notebook", "--allow-root", "--notebook-dir=/home/ubuntu/notebooks", "--ip='*'", "--port=8888", "--no-browser"]
+#CMD ["jupyter", "lab", "--allow-root", "--notebook-dir=/home/ubuntu/notebooks", "--ip='*'", "--port=8888", "--no-browser"]
