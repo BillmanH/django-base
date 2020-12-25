@@ -1,6 +1,6 @@
 # We will use Ubuntu for our image
 FROM ubuntu:latest
-COPY * /
+COPY . /doc/
 
 # Updating Ubuntu packages
 RUN apt-get update && yes|apt-get upgrade
