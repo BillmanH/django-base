@@ -1,0 +1,20 @@
+dependencies:
+  - pyyaml
+  - notebook
+  - altair
+  - ipykernel
+  - vega_datasets
+  - jupyterlab
+  - numpy
+  - pyodbc
+  - autopep8
+  - pip:
+      - Django>=3.0,<4.0
+      - sycopg2-binary
+      - django-pyodbc-azure
+      - oauthlib
+      - pyjwt
+      - python3-openid
+      - requests-oauthlib
+      - social-auth-app-django
+      - social-auth-core
