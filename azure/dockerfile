@@ -1,0 +1,9 @@
+FROM dsvm:latest
+COPY . /home/ubuntu/azure_env.yaml
+
+# Adding the libraries that I will want to use:
+run conda env list
+run conda init
+RUN ls
+
+RUN conda env update --file ~/azure_env.yaml
